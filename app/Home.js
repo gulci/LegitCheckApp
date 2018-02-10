@@ -1,18 +1,21 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
-  View
+  View,
 } from 'react-native';
 
-type Props = {};
-export default class Home extends Component<Props> {
+import { COLOR_WHITE } from './styles/colors';
+
+class Home extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+
+    };
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -29,11 +32,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: COLOR_WHITE,
   },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
-  }
+  },
 });
+
+export default Home;
