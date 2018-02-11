@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
-import Home from './app/Home';
+import Main from './app/main';
 
-AppRegistry.registerComponent('LegitCheckApp', () => Home);
+AppRegistry.registerComponent('LegitCheckApp', () => Main);
