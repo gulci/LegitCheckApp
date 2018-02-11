@@ -1,22 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
-  Text,
   View,
+  Button,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
+import { sneakers } from '../data/Sneakers';
 import css from '../styles/styles';
 import {
   sneakerSelectGradient,
   barcodeScanGradient,
 } from '../styles/colors';
 
-class Home extends Component {
+class Home extends React.Component {
+  static navigationOptions = ({ navigation }) => ({
+    headerRight: (
+      <Button
+        title="About"
+        onPress={() => navigation.navigate('About')}
+      />
+    ),
+  })
+
   constructor(props) {
     super(props);
 
     this.state = {
-
+      sneakerData: sneakers,
     };
   }
 
@@ -30,9 +41,15 @@ class Home extends Component {
           end={{ x: 1, y: 1 }}
           locations={[0, 2]}
         >
-          <Text style={css.homeText}>
-            Select Your Sneaker
-          </Text>
+          <Button
+            title="Select Your Sneaker"
+            onPress={() => this.props.navigation.navigate(
+              'SneakerSelect',
+              {
+                sneakerData: this.state.sneakerData,
+              },
+            )}
+          />
         </LinearGradient>
         <LinearGradient
           style={css.mainContainer}
@@ -41,13 +58,18 @@ class Home extends Component {
           end={{ x: 1, y: 1 }}
           locations={[-2, 1]}
         >
-          <Text style={css.homeText}>
-            Scan barcode
-          </Text>
+          <Button
+            title="Scan Barcode"
+            onPress={() => this.props.navigation.navigate('BarcodeScanner')}
+          />
         </LinearGradient>
       </View>
     );
   }
 }
+
+Home.propTypes = {
+  navigation: PropTypes.shape({ navigate: PropTypes.func }).isRequired,
+};
 
 export default Home;
