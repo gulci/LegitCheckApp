@@ -19,6 +19,8 @@ import { StyleSheet } from 'react-native';
 
 import {
   COLOR_WHITE,
+  COLOR_BLACK,
+  COLOR_BLACK_30,
 } from './colors';
 
 const css = StyleSheet.create({
@@ -63,17 +65,37 @@ const css = StyleSheet.create({
   },
 
   // 303 - Sneaker Select View
+  sneakerSelectListContainer: {
+    backgroundColor: COLOR_BLACK,
+  },
   sneakerItem: {
+    height: 200,
+  },
+  sneakerItemImageContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+  },
+  sneakerItemImage: {
+    flex: 1,
+    resizeMode: 'cover',
+  },
+  sneakerItemTextContainer: {
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-    height: 200,
-    padding: 20,
+    backgroundColor: COLOR_BLACK_30,
   },
   sneakerItemText: {
+    color: COLOR_WHITE,
     fontSize: 24,
     fontWeight: '700',
     alignSelf: 'flex-end',
     textAlign: 'center',
+    marginTop: 10,
+    marginBottom: 10,
   },
 });
 

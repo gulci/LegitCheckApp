@@ -4,31 +4,28 @@ import {
   TouchableHighlight,
   Text,
   View,
+  Image,
 } from 'react-native';
 
 import css from '../../styles/styles';
 
 class SneakerSelectItem extends React.Component {
-  static defaultProps = {
-    varieties: null,
-  }
-
   itemPress = () => {
     // Only navigate to additional select if
     // shoe has verieties. Otherwise load
     // sneaker info component
-    if (this.props.varieties) {
+    if (this.props.sneakerData.varieties) {
       this.props.navigation.navigate(
         'SneakerSelect',
         {
-          sneakerData: this.props.varieties,
+          sneakerData: this.props.sneakerData.varieties,
         },
       );
     } else {
       this.props.navigation.navigate(
         'SneakerInfo',
         {
-          sneaker: this.props.sneakerTitle,
+          sneaker: this.props.sneakerData,
         },
       );
     }
@@ -40,7 +37,18 @@ class SneakerSelectItem extends React.Component {
         onPress={this.itemPress}
       >
         <View style={css.sneakerItem}>
-          <Text style={css.sneakerItemText}>{this.props.sneakerTitle}</Text>
+          <View style={css.sneakerItemImageContainer}>
+            <Image
+              style={css.sneakerItemImage}
+              source={{
+                uri: this.props.sneakerData.imageUrl,
+                cache: 'default',
+              }}
+            />
+          </View>
+          <View style={css.sneakerItemTextContainer}>
+            <Text style={css.sneakerItemText}>{this.props.sneakerData.name}</Text>
+          </View>
         </View>
       </TouchableHighlight>
     );
@@ -48,11 +56,15 @@ class SneakerSelectItem extends React.Component {
 }
 
 SneakerSelectItem.propTypes = {
-  sneakerTitle: PropTypes.string.isRequired,
-  varieties: PropTypes.arrayOf(PropTypes.shape({
+  sneakerData: PropTypes.shape({
     key: PropTypes.string,
     name: PropTypes.string,
-  })),
+    imageUrl: PropTypes.string,
+    varieties: PropTypes.arrayOf(PropTypes.shape({
+      key: PropTypes.string,
+      name: PropTypes.string,
+    })),
+  }).isRequired,
   navigation: PropTypes.shape({ navigate: PropTypes.func }).isRequired,
 };
 

@@ -39,7 +39,7 @@ class Home extends React.Component {
           colors={sneakerSelectGradient}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
-          locations={[0, 2]}
+          locations={[0, 1]}
         >
           <Button
             title="Select Your Sneaker"
@@ -56,7 +56,7 @@ class Home extends React.Component {
           colors={barcodeScanGradient}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
-          locations={[-2, 1]}
+          locations={[0, 1]}
         >
           <Button
             title="Scan Barcode"

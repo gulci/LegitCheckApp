@@ -18,13 +18,12 @@ class SneakerSelect extends React.Component {
     const { params } = this.props.navigation.state;
 
     return (
-      <View style={css.flex}>
+      <View style={[css.flex, css.sneakerSelectListContainer]}>
         <FlatList
           data={params.sneakerData}
           renderItem={({ item }) => (
             <SneakerSelectItem
-              sneakerTitle={item.name}
-              varieties={item.varieties}
+              sneakerData={item}
               navigation={this.props.navigation}
             />
           )}

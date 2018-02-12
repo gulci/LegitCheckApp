@@ -11,14 +11,14 @@ class SneakerInfo extends React.Component {
     const { params } = navigation.state;
 
     return {
-      title: params.sneaker,
+      title: params.sneaker.name,
     };
   }
 
   render() {
     return (
       <View style={css.flex}>
-        <View style={css.mainContainer}>
+        <View style={css.mainContainer} onLayout={this.setImageSize}>
           <Text style={css.aboutText}>
             Legit Check Info
           </Text>

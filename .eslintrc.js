@@ -1,5 +1,10 @@
 module.exports = {
     "parser": "babel-eslint",
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+    },
     "extends": [
       "airbnb",
       "plugin:react-native/all"
@@ -8,9 +13,6 @@ module.exports = {
       "react",
       "react-native"
     ],
-    "ecmaFeatures": {
-      "jsx": true
-    },
     "env": {
       "es6": true,
       "react-native/react-native": true,
