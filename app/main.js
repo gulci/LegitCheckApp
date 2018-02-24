@@ -5,6 +5,10 @@ import Home from './views/Home';
 import About from './views/About';
 import SneakerSelect from './views/sneakers/SneakerSelect';
 import SneakerInfo from './views/sneakers/SneakerInfo';
+import BarcodeScanner from './views/scanner/BarcodeScanner';
+import WebBasic from './views/utility/WebBasic';
+
+import withNavigationPreventDuplicate from './util/withNavigationPreventDuplicate';
 
 const RootStack = StackNavigator(
   {
@@ -13,7 +17,6 @@ const RootStack = StackNavigator(
     },
     SneakerSelect: {
       screen: SneakerSelect,
-
     },
     About: {
       screen: About,
@@ -21,11 +24,20 @@ const RootStack = StackNavigator(
     SneakerInfo: {
       screen: SneakerInfo,
     },
+    BarcodeScanner: {
+      screen: BarcodeScanner,
+    },
+    WebBasic: {
+      screen: WebBasic,
+    },
   },
   {
     initialRouteName: 'Home',
   },
 );
+
+RootStack.router.getStateForAction =
+withNavigationPreventDuplicate(RootStack.router.getStateForAction);
 
 const Main = () => (<RootStack />);
 

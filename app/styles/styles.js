@@ -12,6 +12,7 @@
     301 - Home View
     302 - About View
     303 - Sneaker Select View
+    304 - Scanner View
 
 */
 
@@ -96,6 +97,13 @@ const css = StyleSheet.create({
     textAlign: 'center',
     marginTop: 10,
     marginBottom: 10,
+  },
+
+  // 304 Scanner View
+  barcodeScannerPreview: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
 });
 
