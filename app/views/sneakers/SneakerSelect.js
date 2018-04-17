@@ -4,6 +4,7 @@ import {
   View,
   FlatList,
 } from 'react-native';
+import { connect } from 'react-redux';
 
 import SneakerSelectItem from './SneakerSelectItem';
 
@@ -11,16 +12,23 @@ import css from '../../styles/styles';
 
 class SneakerSelect extends React.Component {
   static navigationOptions = {
-    title: 'Sneaker Select',
+    title: 'Item Select',
   }
 
   render() {
     const { params } = this.props.navigation.state;
 
+    if (this.props.requestStatus) {
+      return null;
+    }
+
     return (
       <View style={[css.flex, css.sneakerSelectListContainer]}>
         <FlatList
           data={params.sneakerData}
+          keyExtractor={(item, index) => (
+            index.toString()
+          )}
           renderItem={({ item }) => (
             <SneakerSelectItem
               sneakerData={item}
@@ -32,6 +40,10 @@ class SneakerSelect extends React.Component {
     );
   }
 }
+
+SneakerSelect.defaultProps = {
+  requestStatus: null,
+};
 
 SneakerSelect.propTypes = {
   navigation: PropTypes.shape({
@@ -46,6 +58,16 @@ SneakerSelect.propTypes = {
       }),
     }),
   }).isRequired,
+  requestStatus: PropTypes.shape({
+    timeRequested: PropTypes.object,
+  }),
 };
 
-export default SneakerSelect;
+const mapStateToProps = state => (
+  {
+    requestStatus: state.requestStatuses.GET_GUIDES,
+    requestError: state.requestErrors.GET_GUIDES,
+  }
+);
+
+export default connect(mapStateToProps)(SneakerSelect);

@@ -5,8 +5,8 @@ import {
   Button,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { connect } from 'react-redux';
 
-import { sneakers } from '../data/Sneakers';
 import css from '../styles/styles';
 import {
   sneakerSelectGradient,
@@ -23,12 +23,8 @@ class Home extends React.Component {
     ),
   })
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      sneakerData: sneakers,
-    };
+  componentDidMount() {
+    this.props.getGuides();
   }
 
   render() {
@@ -46,7 +42,7 @@ class Home extends React.Component {
             onPress={() => this.props.navigation.navigate(
               'SneakerSelect',
               {
-                sneakerData: this.state.sneakerData,
+                sneakerData: this.props.guides.items,
               },
             )}
           />
@@ -70,6 +66,33 @@ class Home extends React.Component {
 
 Home.propTypes = {
   navigation: PropTypes.shape({ navigate: PropTypes.func }).isRequired,
+  guides: PropTypes.shape({
+    items: PropTypes.arrayOf(PropTypes.shape({
+      key: PropTypes.string,
+      name: PropTypes.string,
+      varieties: PropTypes.arrayOf(PropTypes.shape({
+        key: PropTypes.string,
+        name: PropTypes.string,
+      })),
+    })),
+  }).isRequired,
+  getGuides: PropTypes.func.isRequired,
 };
 
-export default Home;
+const mapStateToProps = state => (
+  {
+    guides: state.guides,
+    requestStatus: state.requestStatuses.GET_GUIDES,
+    requestError: state.requestErrors.GET_GUIDES,
+  }
+);
+
+const mapDispatchToProps = dispatch => (
+  {
+    getGuides: () => {
+      dispatch({ type: 'GET_GUIDES' });
+    },
+  }
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
