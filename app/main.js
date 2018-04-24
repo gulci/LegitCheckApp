@@ -8,8 +8,8 @@ import configureStore from './store/configureStore';
 
 import Home from './views/Home';
 import About from './views/About';
-import SneakerSelect from './views/sneakers/SneakerSelect';
-import SneakerInfo from './views/sneakers/SneakerInfo';
+import ItemSelect from './views/items/ItemSelect';
+import ItemTells from './views/items/ItemTells';
 import BarcodeScanner from './views/scanner/BarcodeScanner';
 import WebBasic from './views/utility/WebBasic';
 
@@ -24,14 +24,14 @@ const RootStack = StackNavigator(
     Home: {
       screen: Home,
     },
-    SneakerSelect: {
-      screen: SneakerSelect,
+    ItemSelect: {
+      screen: ItemSelect,
     },
     About: {
       screen: About,
     },
-    SneakerInfo: {
-      screen: SneakerInfo,
+    ItemTells: {
+      screen: ItemTells,
     },
     BarcodeScanner: {
       screen: BarcodeScanner,

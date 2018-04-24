@@ -11,7 +11,7 @@
   300 - Views
     301 - Home View
     302 - About View
-    303 - Sneaker Select View
+    303 - Item Select View
     304 - Scanner View
 
 */
@@ -65,31 +65,31 @@ const css = StyleSheet.create({
     margin: 10,
   },
 
-  // 303 - Sneaker Select View
-  sneakerSelectListContainer: {
+  // 303 - Item Select View
+  itemSelectListContainer: {
     backgroundColor: COLOR_BLACK,
   },
-  sneakerItem: {
+  itemListItem: {
     height: 200,
   },
-  sneakerItemImageContainer: {
+  itemListItemImageContainer: {
     position: 'absolute',
     top: 0,
     left: 0,
     width: '100%',
     height: '100%',
   },
-  sneakerItemImage: {
+  itemListItemImage: {
     flex: 1,
     resizeMode: 'cover',
   },
-  sneakerItemTextContainer: {
+  itemListItemTextContainer: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     backgroundColor: COLOR_BLACK_30,
   },
-  sneakerItemText: {
+  itemListItemText: {
     color: COLOR_WHITE,
     fontSize: 24,
     fontWeight: '700',

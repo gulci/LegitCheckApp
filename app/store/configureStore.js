@@ -22,7 +22,14 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export default () => {
-  const store = createStore(persistedReducer, applyMiddleware(...middleWares));
+  /* eslint-disable no-underscore-dangle */
+  const store = createStore(
+    persistedReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    applyMiddleware(...middleWares),
+  );
+  /* eslint-enable */
+
   const persistor = persistStore(
     store,
     null,

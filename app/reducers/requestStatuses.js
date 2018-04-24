@@ -27,7 +27,7 @@ function requestStatuses(state = {}, action) {
   }
   return {
     ...state,
-    [requestName]: newRequestState
+    [requestName]: newRequestState,
   };
 }
 

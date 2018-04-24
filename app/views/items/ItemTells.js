@@ -6,12 +6,12 @@ import {
 
 import css from '../../styles/styles';
 
-class SneakerInfo extends React.Component {
+class ItemTells extends React.Component {
   static navigationOptions = ({ navigation }) => {
     const { params } = navigation.state;
 
     return {
-      title: params.sneaker.name,
+      title: params.item.name,
     };
   }
 
@@ -28,4 +28,4 @@ class SneakerInfo extends React.Component {
   }
 }
 
-export default SneakerInfo;
+export default ItemTells;

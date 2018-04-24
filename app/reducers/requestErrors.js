@@ -14,9 +14,10 @@ function requestErrors(state = {}, action) {
   return {
     ...state,
     // Store error
-    // e.g. stores errorMessage when receiving POST_FEEDBACK_FAILURE
-    // else clears error message when receiving POST_FEEDBACK_REQUEST
-    [requestName]: requestState === 'FAILURE' ? error : ''
+    // e.g. stores errorMessage when receiving GET_ITEMS_FAILURE
+    // else clears error message when receiving REQUEST
+    [requestName]: requestState === 'FAILURE' ?
+      Object.assign({}, error) : null,
   };
 }
 

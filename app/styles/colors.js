@@ -2,7 +2,7 @@ module.exports = {
   /* Color constants */
 
   // Home view
-  sneakerSelectGradient: ['#1585c1', '#7eb5af'],
+  itemSelectGradient: ['#1585c1', '#7eb5af'],
   barcodeScanGradient: ['#bd8f67', '#84815c'],
 
   // Main colors

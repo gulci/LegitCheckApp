@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 import css from '../styles/styles';
 import {
-  sneakerSelectGradient,
+  itemSelectGradient,
   barcodeScanGradient,
 } from '../styles/colors';
 
@@ -24,7 +24,7 @@ class Home extends React.Component {
   })
 
   componentDidMount() {
-    this.props.getGuides();
+    this.props.getItems();
   }
 
   render() {
@@ -32,17 +32,17 @@ class Home extends React.Component {
       <View style={css.flex}>
         <LinearGradient
           style={css.mainContainer}
-          colors={sneakerSelectGradient}
+          colors={itemSelectGradient}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           locations={[0, 1]}
         >
           <Button
-            title="Select Your Sneaker"
+            title="Select Your Item"
             onPress={() => this.props.navigation.navigate(
-              'SneakerSelect',
+              'ItemSelect',
               {
-                sneakerData: this.props.guides.items,
+                itemData: this.props.guides.items,
               },
             )}
           />
@@ -70,13 +70,10 @@ Home.propTypes = {
     items: PropTypes.arrayOf(PropTypes.shape({
       key: PropTypes.string,
       name: PropTypes.string,
-      varieties: PropTypes.arrayOf(PropTypes.shape({
-        key: PropTypes.string,
-        name: PropTypes.string,
-      })),
+      imageUrl: PropTypes.string,
     })),
   }).isRequired,
-  getGuides: PropTypes.func.isRequired,
+  getItems: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => (
@@ -89,8 +86,8 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    getGuides: () => {
-      dispatch({ type: 'GET_GUIDES' });
+    getItems: () => {
+      dispatch({ type: 'GET_ITEMS' });
     },
   }
 );
