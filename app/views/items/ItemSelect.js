@@ -17,28 +17,62 @@ class ItemSelect extends React.Component {
 
   componentDidMount() {
     const { params } = this.props.navigation.state;
+
     if (params.itemId) {
+      // If we are displaying item varieties
       this.props.getVarieties(params.itemId);
     }
   }
 
+  shouldComponentUpdate(nextProps) {
+    if (this.props.navigation.state.params.itemId) {
+      return ((this.props.varieties !== nextProps.varieties ||
+      this.props.varietiesStatus !== nextProps.varietiesStatus));
+    } else if (!this.props.navigation.state.params.itemId) {
+      return ((this.props.items !== nextProps.items ||
+      this.props.itemsStatus !== nextProps.itemsStatus));
+    }
+    return false;
+  }
+
+  getMappedItems() {
+    const mappedItems = [];
+    Object.keys(this.props.items).forEach((itemId) => {
+      mappedItems.push({
+        ...this.props.items[itemId],
+        itemId,
+        key: itemId,
+      });
+    });
+    return mappedItems;
+  }
+
+  getMappedVarieties() {
+    const { itemId } = this.props.navigation.state.params;
+    const mappedVarieties = [];
+    Object.keys(this.props.varieties[itemId]).forEach((varietyId) => {
+      mappedVarieties.push({
+        ...this.props.varieties[itemId][varietyId],
+        varietyId,
+        key: varietyId,
+      });
+    });
+    return mappedVarieties;
+  }
+
   render() {
     const { params } = this.props.navigation.state;
-    let listData;
+    let listData = [];
 
     if (!params.itemId) {
       if (!this.props.itemsStatus) {
         // Items have loaded, set data
-        listData = params.itemData;
-      } else {
-        return null;
+        listData = this.getMappedItems();
       }
-    } else if (!this.props.varietiesStatus) {
+    } else if (!this.props.varietiesStatus &&
+      this.props.varieties[params.itemId]) {
       // Varities have loaded, set data
-      listData = this.props.varieties;
-    } else {
-      // Varieties are loading
-      return null;
+      listData = this.getMappedVarieties();
     }
 
     return (
@@ -46,10 +80,19 @@ class ItemSelect extends React.Component {
         <FlatList
           data={listData}
           renderItem={({ item }) => (
+            // If the itemId parameter exists,
+            // that means we are using the list
+            // to display varieties. Set
+            // itemId and varietyId props
+            // accordingly.
             <ItemSelectItem
               itemData={item}
-              itemId={item.key}
-              variety={params.itemId}
+              itemId={(params.itemId) ?
+                params.itemId : item.itemId
+              }
+              varietyId={(params.itemId) ?
+                item.varietyId : null
+              }
               navigation={this.props.navigation}
             />
           )}
@@ -60,6 +103,7 @@ class ItemSelect extends React.Component {
 }
 
 ItemSelect.defaultProps = {
+  items: null,
   varieties: null,
   itemsStatus: null,
   varietiesStatus: null,
@@ -74,7 +118,13 @@ ItemSelect.propTypes = {
   itemsStatus: PropTypes.shape({
     timeRequested: PropTypes.object,
   }),
-  varieties: PropTypes.arrayOf(PropTypes.object),
+  items: PropTypes.shape({
+    imageUrl: PropTypes.string,
+    name: PropTypes.string,
+  }),
+  varieties: PropTypes.shape({
+    varietyId: PropTypes.object,
+  }),
   varietiesStatus: PropTypes.shape({
     timeRequested: PropTypes.object,
   }),
@@ -83,6 +133,7 @@ ItemSelect.propTypes = {
 
 const mapStateToProps = state => (
   {
+    items: state.guides.items,
     varieties: state.guides.varieties,
     itemsStatus: state.requestStatuses.GET_ITEMS,
     varietiesStatus: state.requestStatuses.GET_VARIETIES,
@@ -93,8 +144,8 @@ const mapStateToProps = state => (
 
 const mapDispatchToProps = dispatch => (
   {
-    getVarieties: (id) => {
-      dispatch({ type: 'GET_VARIETIES', id });
+    getVarieties: (itemId) => {
+      dispatch({ type: 'GET_VARIETIES', itemId });
     },
   }
 );

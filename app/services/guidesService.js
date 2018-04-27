@@ -5,7 +5,7 @@ const GuidesService = {
     return fetch(`${ROOT_API_URL}/items.json`)
       .then(response => (response.json()))
       .then((data) => {
-        if (data.length === 0) {
+        if (!data || Object.keys(data).length === 0) {
           throw (new Error('No items returned from server.'));
         } else {
           return data;
@@ -19,7 +19,7 @@ const GuidesService = {
     return fetch(`${ROOT_API_URL}/varieties/${itemId}.json`)
       .then(response => (response.json()))
       .then((data) => {
-        if (data.length === 0) {
+        if (!data || Object.keys(data).length === 0) {
           throw (new Error('No varieties returned from server.'));
         } else {
           return data;
@@ -33,8 +33,8 @@ const GuidesService = {
     return fetch(`${ROOT_API_URL}/tells/${itemId}/${varietyId}.json`)
       .then(response => (response.json()))
       .then((data) => {
-        if (data.length === 0) {
-          throw (new Error('Invalid variety returned from server.'));
+        if (!data || Object.keys(data).length === 0) {
+          throw (new Error('No tells returned from server.'));
         } else {
           return data;
         }

@@ -13,13 +13,18 @@ class ItemSelectItem extends React.Component {
   itemPress = () => {
     // Only navigate to additional select if
     // shoe has verieties. Otherwise load
-    // item tells component
-    if (this.props.variety) {
+    // ItemTells component
+    if (this.props.varietyId) {
+      const itemData = {
+        itemId: this.props.itemId,
+        varietyId: this.props.varietyId,
+        name: this.props.itemData.name,
+      };
+
       this.props.navigation.navigate(
         'ItemTells',
         {
-          variety: this.props.variety,
-          item: this.props.itemData,
+          item: itemData,
         },
       );
     } else if (this.props.itemId) {
@@ -33,6 +38,8 @@ class ItemSelectItem extends React.Component {
   }
 
   render() {
+    const itemName = String(this.props.itemData.name).toUpperCase();
+
     return (
       <TouchableHighlight
         onPress={this.itemPress}
@@ -48,7 +55,7 @@ class ItemSelectItem extends React.Component {
             />
           </View>
           <View style={css.itemListItemTextContainer}>
-            <Text style={css.itemListItemText}>{this.props.itemData.name}</Text>
+            <Text style={css.itemListItemText}>{itemName}</Text>
           </View>
         </View>
       </TouchableHighlight>
@@ -59,7 +66,7 @@ class ItemSelectItem extends React.Component {
 ItemSelectItem.defaultProps = {
   itemData: null,
   itemId: null,
-  variety: null,
+  varietyId: null,
 };
 
 ItemSelectItem.propTypes = {
@@ -68,7 +75,7 @@ ItemSelectItem.propTypes = {
     imageUrl: PropTypes.string,
   }),
   itemId: PropTypes.string,
-  variety: PropTypes.string,
+  varietyId: PropTypes.string,
   navigation: PropTypes.shape({ navigate: PropTypes.func }).isRequired,
 };
 

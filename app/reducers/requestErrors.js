@@ -16,8 +16,7 @@ function requestErrors(state = {}, action) {
     // Store error
     // e.g. stores errorMessage when receiving GET_ITEMS_FAILURE
     // else clears error message when receiving REQUEST
-    [requestName]: requestState === 'FAILURE' ?
-      Object.assign({}, error) : null,
+    [requestName]: requestState === 'FAILURE' ? error.message : null,
   };
 }
 

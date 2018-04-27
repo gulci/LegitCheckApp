@@ -42,7 +42,7 @@ class Home extends React.Component {
             onPress={() => this.props.navigation.navigate(
               'ItemSelect',
               {
-                itemData: this.props.guides.items,
+                itemData: this.props.guides,
               },
             )}
           />
@@ -67,11 +67,15 @@ class Home extends React.Component {
 Home.propTypes = {
   navigation: PropTypes.shape({ navigate: PropTypes.func }).isRequired,
   guides: PropTypes.shape({
-    items: PropTypes.arrayOf(PropTypes.shape({
+    items: PropTypes.shape({
       key: PropTypes.string,
-      name: PropTypes.string,
-      imageUrl: PropTypes.string,
-    })),
+    }),
+    varieties: PropTypes.shape({
+      key: PropTypes.string,
+    }),
+    tells: PropTypes.shape({
+      key: PropTypes.string,
+    }),
   }).isRequired,
   getItems: PropTypes.func.isRequired,
 };

@@ -1,7 +1,7 @@
 const initialState = {
-  items: [],
-  varieties: [],
-  tells: [],
+  items: {},
+  varieties: {},
+  tells: {},
 };
 
 const guides = (state = initialState, action) => {
@@ -12,11 +12,16 @@ const guides = (state = initialState, action) => {
       return newState;
     }
     case 'SET_GUIDES_VARIETIES': {
-      newState.varieties = action.data;
+      const { itemId, data } = action;
+      newState.varieties[itemId] = data;
       return newState;
     }
     case 'SET_GUIDES_TELLS': {
-      newState.varieties = action.data;
+      const { itemId, varietyId, data } = action;
+      newState.tells[itemId] = {
+        ...newState.tells[itemId],
+        [varietyId]: data,
+      };
       return newState;
     }
     default: {

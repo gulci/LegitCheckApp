@@ -16,31 +16,20 @@ function* fetchItems() {
       const e = new Error('Request timed out.');
       throw e;
     } else if (response) {
-      const mappedResponse = [];
-      Object.keys(response).forEach((key) => {
-        mappedResponse.push({
-          ...response[key],
-          key,
-        });
-      });
-
-      yield put({ type: 'SET_GUIDES_ITEMS', data: mappedResponse });
+      yield put({ type: 'SET_GUIDES_ITEMS', data: response });
       yield put({ type: 'GET_ITEMS_SUCCESS' });
     }
   } catch (error) {
-    console.log(error);
     yield put({ type: 'GET_ITEMS_FAILURE', error });
   }
 }
 
 function* fetchVarieties(action) {
-  const { id } = action;
-
+  const { itemId } = action;
   yield put({ type: 'GET_VARIETIES_REQUEST' });
-
   try {
     const { response, timeout } = yield race({
-      response: call(GuidesService.FetchVarieties, id),
+      response: call(GuidesService.FetchVarieties, itemId),
       timeout: call(delay, HTTP_REQUEST_TTL),
     });
 
@@ -48,31 +37,20 @@ function* fetchVarieties(action) {
       const e = new Error('Request timed out.');
       throw e;
     } else if (response) {
-      const mappedResponse = [];
-      Object.keys(response).forEach((key) => {
-        mappedResponse.push({
-          ...response[key],
-          key: id,
-        });
-      });
-
-      yield put({ type: 'SET_GUIDES_VARIETIES', id, data: mappedResponse });
+      yield put({ type: 'SET_GUIDES_VARIETIES', itemId, data: response });
       yield put({ type: 'GET_VARIETIES_SUCCESS' });
     }
   } catch (error) {
-    console.log(error);
-    yield put({ type: 'GET_VARIETIES_FAILURE' });
+    yield put({ type: 'GET_VARIETIES_FAILURE', error });
   }
 }
 
 function* fetchTells(action) {
-  const { id } = action;
-
+  const { itemId, varietyId } = action;
   yield put({ type: 'GET_TELLS_REQUEST' });
-
   try {
     const { response, timeout } = yield race({
-      response: call(GuidesService.FetchTells, id),
+      response: call(GuidesService.FetchTells, itemId, varietyId),
       timeout: call(delay, HTTP_REQUEST_TTL),
     });
 
@@ -80,12 +58,16 @@ function* fetchTells(action) {
       const e = new Error('Request timed out.');
       throw e;
     } else if (response) {
-      yield put({ type: 'SET_TELLS_VARIETIES', id, data: response });
+      yield put({
+        type: 'SET_GUIDES_TELLS',
+        itemId,
+        varietyId,
+        data: response,
+      });
       yield put({ type: 'GET_TELLS_SUCCESS' });
     }
   } catch (error) {
-    console.log(error);
-    yield put({ type: 'GET_TELLS_FAILURE' });
+    yield put({ type: 'GET_TELLS_FAILURE', error });
   }
 }
 
