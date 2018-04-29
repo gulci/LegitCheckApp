@@ -11,8 +11,13 @@ import ItemSelectItem from './ItemSelectItem';
 import css from '../../styles/styles';
 
 class ItemSelect extends React.Component {
-  static navigationOptions = {
-    title: 'Item Select',
+  static navigationOptions = ({ navigation }) => {
+    const { params } = navigation.state;
+    return {
+      title: (params.itemId ?
+        params.itemName : ('Item Select')
+      ),
+    };
   }
 
   componentDidMount() {
@@ -21,6 +26,28 @@ class ItemSelect extends React.Component {
     if (params.itemId) {
       // If we are displaying item varieties
       this.props.getVarieties(params.itemId);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { params } = this.props.navigation.state;
+
+    // If we finish loading and we find that
+    // there are in fact no varieties,
+    // navigate directly to item tells
+    if (!nextProps.varietiesStatus &&
+      nextProps.varieties[params.itemId] &&
+      nextProps.varieties[params.itemId].isEmpty
+    ) {
+      this.props.navigation.replace(
+        'ItemTells',
+        {
+          item: {
+            name: this.props.items[params.itemId].name,
+            varietyId: params.itemId,
+          },
+        },
+      );
     }
   }
 
@@ -72,7 +99,10 @@ class ItemSelect extends React.Component {
     } else if (!this.props.varietiesStatus &&
       this.props.varieties[params.itemId]) {
       // Varities have loaded, set data
-      listData = this.getMappedVarieties();
+
+      if (!this.props.varieties[params.itemId].isEmpty) {
+        listData = this.getMappedVarieties();
+      }
     }
 
     return (
@@ -85,6 +115,7 @@ class ItemSelect extends React.Component {
             // to display varieties. Set
             // itemId and varietyId props
             // accordingly.
+            //
             <ItemSelectItem
               itemData={item}
               itemId={(params.itemId) ?
@@ -114,6 +145,7 @@ ItemSelect.propTypes = {
     state: PropTypes.shape({
       params: PropTypes.object,
     }),
+    replace: PropTypes.func,
   }).isRequired,
   itemsStatus: PropTypes.shape({
     timeRequested: PropTypes.object,

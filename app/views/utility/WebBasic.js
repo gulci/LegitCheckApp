@@ -1,7 +1,6 @@
 import React from 'react';
-import {
-  WebView,
-} from 'react-native';
+import PropTypes from 'prop-types';
+import { WebView } from 'react-native';
 
 import css from '../../styles/styles';
 
@@ -24,5 +23,15 @@ class WebBasic extends React.Component {
     );
   }
 }
+
+WebBasic.propTypes = {
+  navigation: PropTypes.shape({
+    state: PropTypes.shape({
+      params: PropTypes.shape({
+        uri: PropTypes.string.isRequired,
+      }),
+    }),
+  }).isRequired,
+};
 
 export default WebBasic;

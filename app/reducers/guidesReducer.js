@@ -17,11 +17,8 @@ const guides = (state = initialState, action) => {
       return newState;
     }
     case 'SET_GUIDES_TELLS': {
-      const { itemId, varietyId, data } = action;
-      newState.tells[itemId] = {
-        ...newState.tells[itemId],
-        [varietyId]: data,
-      };
+      const { varietyId, data } = action;
+      newState.tells[varietyId] = data;
       return newState;
     }
     default: {

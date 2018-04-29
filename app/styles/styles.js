@@ -11,9 +11,9 @@
   300 - Views
     301 - Home View
     302 - About View
-    303 - Item Select View
-    304 - Scanner View
-
+    303 - Items View
+    304 - Tells View
+    305 - Scanner View
 */
 
 import { StyleSheet } from 'react-native';
@@ -21,7 +21,9 @@ import { StyleSheet } from 'react-native';
 import {
   COLOR_WHITE,
   COLOR_BLACK,
+  COLOR_TRANSPARENT,
   COLOR_BLACK_30,
+  COLOR_BLACK_40,
 } from './colors';
 
 const css = StyleSheet.create({
@@ -65,7 +67,7 @@ const css = StyleSheet.create({
     margin: 10,
   },
 
-  // 303 - Item Select View
+  // 303 - Items View
   itemSelectListContainer: {
     backgroundColor: COLOR_BLACK,
   },
@@ -99,7 +101,44 @@ const css = StyleSheet.create({
     marginBottom: 10,
   },
 
-  // 304 Scanner View
+  // 304 Tells View
+  itemTellsItemContainer: {
+    height: 80,
+    margin: 36,
+    backgroundColor: COLOR_BLACK_40,
+    borderColor: COLOR_TRANSPARENT,
+    borderRadius: 4,
+    borderWidth: 1,
+    overflow: 'hidden',
+  },
+
+  itemTellsItem: {
+    flexDirection: 'row',
+    height: '100%',
+  },
+
+  itemTellsItemTextContainer: {
+    flex: 3,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  itemTellsItemText: {
+    fontSize: 24,
+    color: COLOR_WHITE,
+  },
+
+  itemTellsItemImageContainer: {
+    flex: 1,
+    padding: 20,
+  },
+  itemTellsItemImage: {
+    flex: 1,
+    resizeMode: 'contain',
+
+  },
+
+  // 305 Scanner View
   barcodeScannerPreview: {
     flex: 1,
     justifyContent: 'flex-end',

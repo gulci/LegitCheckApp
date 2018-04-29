@@ -46,11 +46,11 @@ function* fetchVarieties(action) {
 }
 
 function* fetchTells(action) {
-  const { itemId, varietyId } = action;
+  const { varietyId } = action;
   yield put({ type: 'GET_TELLS_REQUEST' });
   try {
     const { response, timeout } = yield race({
-      response: call(GuidesService.FetchTells, itemId, varietyId),
+      response: call(GuidesService.FetchTells, varietyId),
       timeout: call(delay, HTTP_REQUEST_TTL),
     });
 
@@ -60,7 +60,6 @@ function* fetchTells(action) {
     } else if (response) {
       yield put({
         type: 'SET_GUIDES_TELLS',
-        itemId,
         varietyId,
         data: response,
       });

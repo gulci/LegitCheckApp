@@ -7,6 +7,7 @@ import {
   Image,
 } from 'react-native';
 
+import colors from '../../styles/colors';
 import css from '../../styles/styles';
 
 class ItemSelectItem extends React.Component {
@@ -16,7 +17,6 @@ class ItemSelectItem extends React.Component {
     // ItemTells component
     if (this.props.varietyId) {
       const itemData = {
-        itemId: this.props.itemId,
         varietyId: this.props.varietyId,
         name: this.props.itemData.name,
       };
@@ -32,6 +32,7 @@ class ItemSelectItem extends React.Component {
         'ItemSelect',
         {
           itemId: this.props.itemId,
+          itemName: this.props.itemData.name,
         },
       );
     }
@@ -39,10 +40,11 @@ class ItemSelectItem extends React.Component {
 
   render() {
     const itemName = String(this.props.itemData.name).toUpperCase();
-
     return (
       <TouchableHighlight
         onPress={this.itemPress}
+        activeOpacity={0.3}
+        underlayColor={colors.COLOR_WHITE}
       >
         <View style={css.itemListItem}>
           <View style={css.itemListItemImageContainer}>

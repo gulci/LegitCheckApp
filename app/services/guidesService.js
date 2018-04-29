@@ -20,17 +20,18 @@ const GuidesService = {
       .then(response => (response.json()))
       .then((data) => {
         if (!data || Object.keys(data).length === 0) {
-          throw (new Error('No varieties returned from server.'));
-        } else {
-          return data;
+          return {
+            isEmpty: true,
+          };
         }
+        return data;
       })
       .catch((error) => {
         throw error;
       });
   },
-  FetchTells(itemId, varietyId) {
-    return fetch(`${ROOT_API_URL}/tells/${itemId}/${varietyId}.json`)
+  FetchTells(varietyId) {
+    return fetch(`${ROOT_API_URL}/tells/${varietyId}.json`)
       .then(response => (response.json()))
       .then((data) => {
         if (!data || Object.keys(data).length === 0) {
