@@ -1,8 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { WebView } from 'react-native';
+import {
+  View,
+  WebView,
+  TouchableOpacity,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 
 import css from '../../styles/styles';
+import { COLOR_WHITE } from '../../styles/colors';
 
 class WebBasic extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -13,13 +19,59 @@ class WebBasic extends React.Component {
     };
   }
 
+  onBack() {
+    this.webview.goBack();
+  }
+
+  onForward() {
+    this.webview.goForward();
+  }
+
+  onReload() {
+    this.webview.reload();
+  }
+
   render() {
     const { params } = this.props.navigation.state;
     return (
-      <WebView
-        source={{ uri: params.uri }}
-        style={css.flex}
-      />
+      <View style={css.flex}>
+        <WebView
+          ref={(ref) => { this.webview = ref; }}
+          source={{ uri: params.uri }}
+        />
+        <View style={css.webNavBar}>
+          <TouchableOpacity
+            onPress={() => this.onBack()}
+            style={css.webNavBarIcon}
+          >
+            <Icon
+              name="chevron-left"
+              color={COLOR_WHITE}
+              size={24}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => this.onReload()}
+            style={css.webNavBarIcon}
+          >
+            <Icon
+              name="refresh-cw"
+              color={COLOR_WHITE}
+              size={24}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => this.onForward()}
+            style={css.webNavBarIcon}
+          >
+            <Icon
+              name="chevron-right"
+              color={COLOR_WHITE}
+              size={24}
+            />
+          </TouchableOpacity>
+        </View>
+      </View>
     );
   }
 }

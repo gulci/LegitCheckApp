@@ -21,8 +21,8 @@ import { StyleSheet } from 'react-native';
 import {
   COLOR_WHITE,
   COLOR_BLACK,
+  COLOR_GRAY,
   COLOR_TRANSPARENT,
-  COLOR_BLACK_30,
   COLOR_BLACK_40,
 } from './colors';
 
@@ -31,6 +31,15 @@ const css = StyleSheet.create({
    *  100 - Primary styles
    */
   flex: { flex: 1 },
+
+  // Navigation
+  navigationHeader: {
+    backgroundColor: COLOR_BLACK,
+  },
+
+  headerRightIcon: {
+    paddingRight: 8,
+  },
 
   /*
    *  200 - Primary Containers
@@ -89,7 +98,6 @@ const css = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-    backgroundColor: COLOR_BLACK_30,
   },
   itemListItemText: {
     color: COLOR_WHITE,
@@ -99,6 +107,11 @@ const css = StyleSheet.create({
     textAlign: 'center',
     marginTop: 10,
     marginBottom: 10,
+  },
+
+  itemListVarietyText: {
+    color: COLOR_GRAY,
+    fontWeight: '300',
   },
 
   // 304 Tells View
@@ -130,12 +143,11 @@ const css = StyleSheet.create({
 
   itemTellsItemImageContainer: {
     flex: 1,
-    padding: 20,
+    padding: 4,
   },
   itemTellsItemImage: {
     flex: 1,
     resizeMode: 'contain',
-
   },
 
   // 305 Scanner View
@@ -143,6 +155,23 @@ const css = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
+  },
+
+  // 306 WebBasic View
+  webNavBar: {
+    backgroundColor: COLOR_BLACK,
+    alignSelf: 'flex-end',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    height: 48,
+    width: '100%',
+    padding: 8,
+  },
+
+  webNavBarIcon: {
+    paddingLeft: 32,
+    paddingRight: 32,
   },
 });
 

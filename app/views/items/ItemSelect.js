@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import ItemSelectItem from './ItemSelectItem';
 
 import css from '../../styles/styles';
+import { COLOR_OFF_WHITE } from '../../styles/colors';
 
 class ItemSelect extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -105,8 +106,19 @@ class ItemSelect extends React.Component {
       }
     }
 
+    const varietiesStyle = (params.itemId) ? ({
+      backgroundColor: COLOR_OFF_WHITE,
+    }) : (null);
+
     return (
-      <View style={[css.flex, css.itemSelectListContainer]}>
+      <View style={
+          [
+            css.flex,
+            css.itemSelectListContainer,
+            varietiesStyle,
+          ]
+        }
+      >
         <FlatList
           data={listData}
           renderItem={({ item }) => (

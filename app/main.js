@@ -1,5 +1,6 @@
 import React from 'react';
-import { StackNavigator } from 'react-navigation';
+import { StatusBar, YellowBox } from 'react-native';
+import { createStackNavigator } from 'react-navigation';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -13,13 +14,24 @@ import ItemTells from './views/items/ItemTells';
 import BarcodeScanner from './views/scanner/BarcodeScanner';
 import WebBasic from './views/utility/WebBasic';
 
-import withNavigationPreventDuplicate from './util/withNavigationPreventDuplicate';
+import { navigationHeader } from './styles/styles';
+
+import {
+  COLOR_WHITE,
+  COLOR_BLACK,
+} from './styles/colors';
+
+// Temporary fix for react-native bug, to be fixed in next release
+YellowBox.ignoreWarnings([
+  'Warning: isMounted(...) is deprecated',
+  'Module RCTImageLoader requires',
+]);
 
 // Store setup
 const { store, persistor } = configureStore();
 
 // Navigation
-const RootStack = StackNavigator(
+const RootStack = createStackNavigator(
   {
     Home: {
       screen: Home,
@@ -42,15 +54,20 @@ const RootStack = StackNavigator(
   },
   {
     initialRouteName: 'Home',
+    navigationOptions: {
+      headerStyle: navigationHeader,
+      headerTintColor: COLOR_WHITE,
+    },
   },
 );
-
-RootStack.router.getStateForAction =
-withNavigationPreventDuplicate(RootStack.router.getStateForAction);
 
 const Main = () => (
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
+      <StatusBar
+        backgroundColor={COLOR_BLACK}
+        barStyle="light-content"
+      />
       <RootStack />
     </PersistGate>
   </Provider>

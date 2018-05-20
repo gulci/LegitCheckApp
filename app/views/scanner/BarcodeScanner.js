@@ -2,15 +2,38 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   View,
+  TouchableOpacity,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 import { RNCamera } from 'react-native-camera';
 
 import css from '../../styles/styles';
+import { COLOR_WHITE } from '../../styles/colors';
 
 class BarcodeScanner extends React.Component {
-  static navigationOptions = {
-    title: 'Barcode Scanner',
-  }
+  static navigationOptions = ({ navigation }) => (
+    {
+      title: 'Barcode Scanner',
+      headerRight: (
+        <TouchableOpacity
+          onPress={() => navigation.navigate(
+            'WebBasic',
+            {
+              title: 'Scanning Barcodes',
+              uri: 'https://chdaniel.com/legit-check-app/barcode-scan/',
+            },
+          )}
+        >
+          <Icon
+            name="info"
+            color={COLOR_WHITE}
+            size={24}
+            style={css.headerRightIcon}
+          />
+        </TouchableOpacity>
+      ),
+    }
+  )
 
   constructor(props) {
     super(props);

@@ -15,6 +15,7 @@ import {
 
 class Home extends React.Component {
   static navigationOptions = ({ navigation }) => ({
+    header: null,
     headerRight: (
       <Button
         title="About"

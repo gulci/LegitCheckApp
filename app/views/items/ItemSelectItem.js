@@ -28,18 +28,22 @@ class ItemSelectItem extends React.Component {
         },
       );
     } else if (this.props.itemId) {
-      this.props.navigation.navigate(
-        'ItemSelect',
-        {
+      this.props.navigation.navigate({
+        routeName: 'ItemSelect',
+        params: {
           itemId: this.props.itemId,
           itemName: this.props.itemData.name,
         },
-      );
+        key: this.props.itemId,
+      });
     }
   }
 
   render() {
     const itemName = String(this.props.itemData.name).toUpperCase();
+    const itemListItemBackgroundStyle = (!this.props.varietyId) ?
+      ({ backgroundColor: colors.COLOR_BLACK_30 }) : (null);
+
     return (
       <TouchableHighlight
         onPress={this.itemPress}
@@ -56,8 +60,23 @@ class ItemSelectItem extends React.Component {
               }}
             />
           </View>
-          <View style={css.itemListItemTextContainer}>
-            <Text style={css.itemListItemText}>{itemName}</Text>
+          <View
+            style={[
+              css.itemListItemTextContainer,
+              (!this.props.varietyId) ?
+              (itemListItemBackgroundStyle) :
+              (null),
+            ]}
+          >
+            <Text
+              style={[
+                css.itemListItemText,
+                (this.props.varietyId) ?
+                (css.itemListVarietyText) : (null),
+              ]}
+            >
+              {itemName}
+            </Text>
           </View>
         </View>
       </TouchableHighlight>

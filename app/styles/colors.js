@@ -2,15 +2,17 @@ module.exports = {
   /* Color constants */
 
   // Home view
-  itemSelectGradient: ['#1585c1', '#7eb5af'],
-  barcodeScanGradient: ['#bd8f67', '#84815c'],
+  itemSelectGradient: ['#0968a2', '#329197'],
+  barcodeScanGradient: ['#93726d', '#63665f'],
 
   // Tells view
   tellsSelectGradient: ['#1585c1', '#7eb5af'],
 
   // Main colors
   COLOR_WHITE: '#F5FCFF',
+  COLOR_OFF_WHITE: '#F1F0EA',
   COLOR_BLACK: '#111111',
+  COLOR_GRAY: '#5E5E5E',
   COLOR_TRANSPARENT: 'rgba(0,0,0,0)',
 
   // Transparent colors
