@@ -8,6 +8,9 @@ module.exports = {
   // Tells view
   tellsSelectGradient: ['#1585c1', '#7eb5af'],
 
+  // About View
+  aboutGradient: ['#928DAB', '#1F1C2C'],
+
   // Main colors
   COLOR_WHITE: '#F5FCFF',
   COLOR_OFF_WHITE: '#F1F0EA',

@@ -57,10 +57,18 @@ const css = StyleSheet.create({
   transparentNav: {
     backgroundColor: COLOR_TRANSPARENT,
     borderBottomWidth: 0,
+    elevation: 0,
+    shadowOpacity: 0,
   },
 
   homeNavButtonLeft: {
-    paddingLeft: 16,
+    paddingLeft: 18,
+  },
+
+  homeNavButtonRightImage: {
+    marginRight: 16,
+    maxWidth: 32,
+    height: '50%',
   },
 
   homeScreenButtonContainer: {
@@ -68,6 +76,7 @@ const css = StyleSheet.create({
   },
 
   homeImage: {
+    alignSelf: 'center',
     height: '100%',
   },
 
@@ -79,10 +88,22 @@ const css = StyleSheet.create({
   },
 
   // 302 - About View
-  aboutText: {
+  aboutLargeText: {
+    color: COLOR_WHITE,
     fontSize: 36,
     textAlign: 'center',
     margin: 10,
+  },
+
+  aboutSmallText: {
+    color: COLOR_WHITE,
+    fontSize: 16,
+    textAlign: 'center',
+    margin: 10,
+  },
+
+  aboutIcon: {
+    alignSelf: 'center',
   },
 
   // 303 - Items View
@@ -161,7 +182,6 @@ const css = StyleSheet.create({
 
   itemTellsItemImageContainer: {
     flex: 1,
-    padding: 2,
   },
   itemTellsItemImage: {
     flex: 1,

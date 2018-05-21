@@ -25,7 +25,7 @@ class BarcodeScanner extends React.Component {
           )}
         >
           <Icon
-            name="info"
+            name="help-circle"
             color={COLOR_WHITE}
             size={24}
             style={css.headerRightIcon}

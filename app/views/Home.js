@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   View,
-  Button,
   TouchableOpacity,
   Image,
 } from 'react-native';
@@ -22,10 +21,39 @@ const modelImage = require('../resources/images/model.png');
 const barcodeImage = require('../resources/images/barcode.png');
 
 class Home extends React.Component {
-  static navigationOptions = {
+  static navigationOptions = ({ navigation }) => ({
     headerTransparent: true,
     headerStyle: css.transparentNav,
-  }
+    headerLeft: (
+      <TouchableOpacity
+        onPress={() => navigation.navigate('About')}
+      >
+        <Icon
+          name="info"
+          color={COLOR_WHITE}
+          size={24}
+          style={css.homeNavButtonLeft}
+        />
+      </TouchableOpacity>
+    ),
+    headerRight: (
+      <TouchableOpacity
+        onPress={() => navigation.navigate(
+          'WebBasic',
+          {
+            title: 'Vision',
+            uri: 'https://chdaniel.com/legit-check-app/start/',
+          },
+        )}
+      >
+        <Image
+          source={brainImage}
+          style={css.homeNavButtonRightImage}
+          resizeMode="contain"
+        />
+      </TouchableOpacity>
+    ),
+  })
 
   componentDidMount() {
     this.props.getItems();
