@@ -4,6 +4,7 @@ import {
   View,
   WebView,
   TouchableOpacity,
+  ActivityIndicator
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -38,6 +39,15 @@ class WebBasic extends React.Component {
         <WebView
           ref={(ref) => { this.webview = ref; }}
           source={{ uri: params.uri }}
+          startInLoadingState
+          renderLoading={
+            () => (
+              <ActivityIndicator
+                size="large"
+                style={css.flex}
+              />
+            )
+          }
         />
         <View style={css.webNavBar}>
           <TouchableOpacity

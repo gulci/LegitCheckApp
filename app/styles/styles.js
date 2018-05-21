@@ -23,7 +23,6 @@ import {
   COLOR_BLACK,
   COLOR_GRAY,
   COLOR_TRANSPARENT,
-  COLOR_BLACK_40,
 } from './colors';
 
 const css = StyleSheet.create({
@@ -55,11 +54,21 @@ const css = StyleSheet.create({
    */
 
   // 301 - Home View
-  sneakerSelectContainer: {
+  transparentNav: {
+    backgroundColor: COLOR_TRANSPARENT,
+    borderBottomWidth: 0,
   },
 
-  barcodeScanContainer: {
+  homeNavButtonLeft: {
+    paddingLeft: 16,
+  },
 
+  homeScreenButtonContainer: {
+    height: '50%',
+  },
+
+  homeImage: {
+    height: '100%',
   },
 
   homeText: {
