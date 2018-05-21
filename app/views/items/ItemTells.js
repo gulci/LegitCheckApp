@@ -52,7 +52,7 @@ class ItemTells extends React.Component {
         style={[css.flex, css.itemTellsListContainer]}
         colors={colors.tellsSelectGradient}
         start={{ x: 0, y: 0.1 }}
-        end={{ x: 0.2, y: 1 }}
+        end={{ x: 2, y: 1.8 }}
         locations={[0, 0.6]}
       >
         <FlatList

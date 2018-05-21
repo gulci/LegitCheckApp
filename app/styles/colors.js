@@ -6,7 +6,7 @@ module.exports = {
   barcodeScanGradient: ['#93726d', '#63665f'],
 
   // Tells view
-  tellsSelectGradient: ['#1585c1', '#7eb5af'],
+  tellsSelectGradient: ['#0b6aa0', '#edecbe'],
 
   // About View
   aboutGradient: ['#928DAB', '#1F1C2C'],
