@@ -49,7 +49,7 @@ class ItemTells extends React.Component {
 
     return (
       <LinearGradient
-        style={[css.flex, css.itemSelectListContainer]}
+        style={[css.flex, css.itemTellsListContainer]}
         colors={colors.tellsSelectGradient}
         start={{ x: 0, y: 0.1 }}
         end={{ x: 0.2, y: 1 }}
@@ -63,6 +63,7 @@ class ItemTells extends React.Component {
               navigation={this.props.navigation}
             />
           )}
+          contentContainerStyle={css.itemTellsList}
         />
       </LinearGradient>
     );

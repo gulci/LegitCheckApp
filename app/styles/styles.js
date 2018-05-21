@@ -115,10 +115,19 @@ const css = StyleSheet.create({
   },
 
   // 304 Tells View
+  itemTellsListContainer: {
+    backgroundColor: COLOR_BLACK,
+  },
+
+  itemTellsList: {
+    paddingTop: 16,
+    paddingBottom: 16,
+  },
+
   itemTellsItemContainer: {
     height: 80,
-    margin: 36,
-    backgroundColor: COLOR_BLACK_40,
+    margin: 16,
+    backgroundColor: COLOR_TRANSPARENT,
     borderColor: COLOR_TRANSPARENT,
     borderRadius: 4,
     borderWidth: 1,
@@ -143,7 +152,7 @@ const css = StyleSheet.create({
 
   itemTellsItemImageContainer: {
     flex: 1,
-    padding: 4,
+    padding: 2,
   },
   itemTellsItemImage: {
     flex: 1,

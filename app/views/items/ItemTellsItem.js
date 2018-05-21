@@ -28,9 +28,6 @@ class ItemSelectItem extends React.Component {
         onPress={() => { this.openUrl(name, tellUrl); }}
       >
         <View style={css.itemTellsItem}>
-          <View style={css.itemTellsItemTextContainer}>
-            <Text style={css.itemTellsItemText}>{name}</Text>
-          </View>
           <View style={css.itemTellsItemImageContainer}>
             <Image
               style={css.itemTellsItemImage}
