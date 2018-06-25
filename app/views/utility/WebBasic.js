@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   View,
+  Text,
   WebView,
   TouchableOpacity,
-  ActivityIndicator
+  ActivityIndicator,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -17,7 +18,31 @@ class WebBasic extends React.Component {
 
     return {
       title: params.title,
+      headerRight: navigation.getParam('rightHeaderButton'),
     };
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      isWebViewLoading: false,
+    };
+  }
+
+  componentWillMount() {
+    if (this.props.navigation.state.params.title.includes('Scan')) {
+      const scanButtonComponent = (
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate('BarcodeScanner')}
+        >
+          <Text style={css.headerTextButtonRight}>
+            Scan
+          </Text>
+        </TouchableOpacity>
+      );
+
+      this.props.navigation.setParams({ rightHeaderButton: scanButtonComponent });
+    }
   }
 
   onBack() {
@@ -32,22 +57,31 @@ class WebBasic extends React.Component {
     this.webview.reload();
   }
 
+  changeLoadingState(isLoading) {
+    this.setState({
+      isWebViewLoading: isLoading,
+    });
+  }
+
   render() {
     const { params } = this.props.navigation.state;
+    const webviewStyle = [];
+
     return (
       <View style={css.flex}>
+        {(this.state.isWebViewLoading) ? (
+          <ActivityIndicator
+            style={css.webLoading}
+            size="large"
+          />
+        ) : (null)
+        }
         <WebView
+          style={webviewStyle}
           ref={(ref) => { this.webview = ref; }}
           source={{ uri: params.uri }}
-          startInLoadingState
-          renderLoading={
-            () => (
-              <ActivityIndicator
-                size="large"
-                style={css.flex}
-              />
-            )
-          }
+          onLoadStart={() => this.changeLoadingState(true)}
+          onLoadEnd={() => this.changeLoadingState(false)}
         />
         <View style={css.webNavBar}>
           <TouchableOpacity
@@ -88,8 +122,11 @@ class WebBasic extends React.Component {
 
 WebBasic.propTypes = {
   navigation: PropTypes.shape({
+    navigate: PropTypes.func,
+    setParams: PropTypes.func,
     state: PropTypes.shape({
       params: PropTypes.shape({
+        title: PropTypes.string.isRequired,
         uri: PropTypes.string.isRequired,
       }),
     }),

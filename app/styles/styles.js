@@ -30,6 +30,7 @@ const css = StyleSheet.create({
    *  100 - Primary styles
    */
   flex: { flex: 1 },
+  horizontal: { flex: 1, flexDirection: 'row' },
 
   // Navigation
   navigationHeader: {
@@ -38,6 +39,12 @@ const css = StyleSheet.create({
 
   headerRightIcon: {
     paddingRight: 8,
+  },
+
+  headerTextButtonRight: {
+    color: COLOR_WHITE,
+    paddingRight: 8,
+    fontSize: 16,
   },
 
   /*
@@ -62,22 +69,24 @@ const css = StyleSheet.create({
   },
 
   homeNavButtonLeft: {
-    paddingLeft: 18,
+    paddingLeft: 12,
   },
 
   homeNavButtonRightImage: {
-    marginRight: 16,
+    marginRight: 5,
     maxWidth: 32,
     height: '50%',
   },
 
   homeScreenButtonContainer: {
+    justifyContent: 'center',
+    alignContent: 'center',
     height: '50%',
   },
 
   homeImage: {
     alignSelf: 'center',
-    height: '100%',
+    height: '75%',
   },
 
   homeText: {
@@ -88,6 +97,10 @@ const css = StyleSheet.create({
   },
 
   // 302 - About View
+  aboutSubsection: {
+    paddingTop: 45,
+  },
+
   aboutLargeText: {
     color: COLOR_WHITE,
     fontSize: 36,
@@ -99,7 +112,7 @@ const css = StyleSheet.create({
     color: COLOR_WHITE,
     fontSize: 16,
     textAlign: 'center',
-    margin: 10,
+    margin: 4,
   },
 
   aboutIcon: {
@@ -210,6 +223,10 @@ const css = StyleSheet.create({
   webNavBarIcon: {
     paddingLeft: 32,
     paddingRight: 32,
+  },
+
+  webLoading: {
+    height: '100%',
   },
 });
 

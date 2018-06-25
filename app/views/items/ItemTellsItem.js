@@ -7,6 +7,7 @@ import {
   Image,
 } from 'react-native';
 
+import { COLOR_TRANSPARENT } from '../../styles/colors';
 import css from '../../styles/styles';
 
 class ItemSelectItem extends React.Component {
@@ -25,6 +26,7 @@ class ItemSelectItem extends React.Component {
     return (
       <TouchableHighlight
         style={css.itemTellsItemContainer}
+        underlayColor={COLOR_TRANSPARENT}
         onPress={() => { this.openUrl(name, tellUrl); }}
       >
         <View style={css.itemTellsItem}>

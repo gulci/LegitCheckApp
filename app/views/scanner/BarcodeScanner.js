@@ -15,22 +15,34 @@ class BarcodeScanner extends React.Component {
     {
       title: 'Barcode Scanner',
       headerRight: (
-        <TouchableOpacity
-          onPress={() => navigation.navigate(
-            'WebBasic',
-            {
-              title: 'Scanning Barcodes',
-              uri: 'https://chdaniel.com/legit-check-app/barcode-scan/',
-            },
-          )}
-        >
-          <Icon
-            name="help-circle"
-            color={COLOR_WHITE}
-            size={24}
-            style={css.headerRightIcon}
-          />
-        </TouchableOpacity>
+        <View style={css.horizontal}>
+          <TouchableOpacity
+            onPress={navigation.getParam('toggleFlash')}
+          >
+            <Icon
+              name="zap"
+              color={COLOR_WHITE}
+              size={24}
+              style={css.headerRightIcon}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate(
+              'WebBasic',
+              {
+                title: 'Scanning Barcodes',
+                uri: 'https://chdaniel.com/legit-check-app/barcode-scan/',
+              },
+            )}
+          >
+            <Icon
+              name="help-circle"
+              color={COLOR_WHITE}
+              size={24}
+              style={css.headerRightIcon}
+            />
+          </TouchableOpacity>
+        </View>
       ),
     }
   )
@@ -44,6 +56,10 @@ class BarcodeScanner extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.props.navigation.setParams({ toggleFlash: this.toggleFlash });
+  }
+
   onBarcodeDetected = (barcode) => {
     if (this.state.scannerActive) {
       this.props.navigation.navigate(
@@ -53,6 +69,14 @@ class BarcodeScanner extends React.Component {
           uri: `https://www.google.com/search?q=${barcode.data}`,
         },
       );
+    }
+  }
+
+  toggleFlash = () => {
+    if (this.state.torchOn === RNCamera.Constants.FlashMode.off) {
+      this.setState({ torchOn: RNCamera.Constants.FlashMode.torch });
+    } else {
+      this.setState({ torchOn: RNCamera.Constants.FlashMode.off });
     }
   }
 
@@ -76,6 +100,7 @@ BarcodeScanner.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func,
     addListener: PropTypes.func,
+    setParams: PropTypes.func,
   }).isRequired,
 };
 

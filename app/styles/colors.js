@@ -9,12 +9,12 @@ module.exports = {
   tellsSelectGradient: ['#0b6aa0', '#edecbe'],
 
   // About View
-  aboutGradient: ['#928DAB', '#1F1C2C'],
+  aboutGradient: ['#0b6aa0', '#edecbe'],
 
   // Main colors
   COLOR_WHITE: '#F5FCFF',
   COLOR_OFF_WHITE: '#F1F0EA',
-  COLOR_BLACK: '#111111',
+  COLOR_BLACK: '#000',
   COLOR_GRAY: '#5E5E5E',
   COLOR_TRANSPARENT: 'rgba(0,0,0,0)',
 
