@@ -26,22 +26,6 @@ class BarcodeScanner extends React.Component {
               style={css.headerRightIcon}
             />
           </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => navigation.navigate(
-              'WebBasic',
-              {
-                title: 'Scanning Barcodes',
-                uri: 'https://chdaniel.com/legit-check-app/barcode-scan/',
-              },
-            )}
-          >
-            <Icon
-              name="help-circle"
-              color={COLOR_WHITE}
-              size={24}
-              style={css.headerRightIcon}
-            />
-          </TouchableOpacity>
         </View>
       ),
     }
