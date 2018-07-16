@@ -36,6 +36,8 @@ target 'LegitCheckApp' do
 
   # React Native Camera
   pod 'react-native-camera', path: '../node_modules/react-native-camera'
+  pod 'BugsnagReactNative', :path => '../node_modules/bugsnag-react-native'
+
 end
 
 post_install do |installer|

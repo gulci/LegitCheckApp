@@ -3,6 +3,7 @@ package com.legitcheckapp;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.bugsnag.BugsnagReactNative;
 import org.reactnative.camera.RNCameraPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.facebook.react.ReactNativeHost;
@@ -25,6 +26,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            BugsnagReactNative.getPackage(),
             new RNCameraPackage(),
             new LinearGradientPackage()
       );
@@ -44,6 +46,7 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
+    BugsnagReactNative.start(this);
     SoLoader.init(this, /* native exopackage */ false);
   }
 }
